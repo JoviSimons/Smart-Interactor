@@ -1,7 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    checkIfWalletExist()
+  })
+
+  const checkIfWalletExist = () => {
+    const { ethereum } = window;
+
+    if(!ethereum){
+      console.log("install metamask")
+    }
+    else{
+      console.log("metamask intalled")
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
