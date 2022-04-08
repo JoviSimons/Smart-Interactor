@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
+import { ethers } from 'ethers';
 
 function App() {
   useEffect(() => {
     checkIfWalletExist()
   })
 
-  const checkIfWalletExist = () => {
+  const checkIfWalletExist = async () => {
     const { ethereum } = window;
 
     if(!ethereum){
@@ -15,6 +16,16 @@ function App() {
     }
     else{
       console.log("metamask intalled")
+    }
+
+    const accounts = await ethereum.request({ method: 'eth_accounts'})
+
+    if(accounts.length !== 0){
+      const account = accounts[0]
+      console.log("account: ", account)
+    }
+    else{
+      console.log("no accounts found")
     }
   }
 
